@@ -1,15 +1,15 @@
 package com.sksamuel.scoverage.samples
 
-import org.scalatest.{OneInstancePerTest, FlatSpec}
 import akka.actor.{ActorSystem, Props}
 import akka.pattern.{Patterns => TestImportAliasPatterns}
 import scala.concurrent.duration._
 import scala.concurrent.Await
 import scala.language.postfixOps
 import akka.testkit.TestProbe
+import org.scalatest._, flatspec._
 
 /** @author Stephen Samuel */
-class CreditEngineTest extends FlatSpec with OneInstancePerTest {
+class CreditEngineTest extends AnyFlatSpec with OneInstancePerTest {
 
   val quote = SpotQuote(
     Instrument("CVX", "Chevron"),
@@ -24,7 +24,7 @@ class CreditEngineTest extends FlatSpec with OneInstancePerTest {
   val req = MarketOrderRequest(Instrument("CVX", "Chevron"), BigDecimal.valueOf(400))
 
   val system = ActorSystem("scales-test")
-  val creditEngine = system.actorOf(Props[CreditEngine])
+  val creditEngine = system.actorOf(Props[CreditEngine]())
   val client = TestProbe()(system)
 
   "a credit engine" should "approve amounts under the minimum" in {

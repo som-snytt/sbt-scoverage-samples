@@ -1,13 +1,13 @@
 package com.sksamuel.scoverage.samples
 
-import org.scalatest.{OneInstancePerTest, FlatSpec}
 import akka.actor.{ActorSystem, Props}
 import akka.testkit.TestProbe
 import scala.concurrent.duration._
 import scala.language.postfixOps
+import org.scalatest._, flatspec._
 
 /** @author Stephen Samuel */
-class ClientActorTest extends FlatSpec with OneInstancePerTest {
+class ClientActorTest extends AnyFlatSpec with OneInstancePerTest {
 
   val req = MarketOrderRequest(Instrument("CVX", "Chevron"), BigDecimal.valueOf(400))
 
@@ -39,6 +39,6 @@ class ClientActorTest extends FlatSpec with OneInstancePerTest {
       BigDecimal.valueOf(50.01)
     )
     client ! quote
-    orderEngine.expectNoMsg(2 seconds)
+    orderEngine.expectNoMessage(2 seconds)
   }
 }

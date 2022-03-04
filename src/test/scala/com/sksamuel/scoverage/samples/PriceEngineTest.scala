@@ -1,11 +1,11 @@
 package com.sksamuel.scoverage.samples
 
-import org.scalatest.{OneInstancePerTest, FlatSpec}
 import akka.actor.{ActorSystem, Props}
 import akka.testkit.TestProbe
+import org.scalatest._, flatspec._
 
 /** @author Stephen Samuel */
-class PriceEngineTest extends FlatSpec with OneInstancePerTest {
+class PriceEngineTest extends AnyFlatSpec with OneInstancePerTest {
 
   val system = ActorSystem("scales-test")
   val priceEngine = system.actorOf(Props(classOf[PriceEngine], new RandomQuoteGenerator))
@@ -20,7 +20,7 @@ class PriceEngineTest extends FlatSpec with OneInstancePerTest {
     system.eventStream.subscribe(probe.ref, classOf[SpotQuote])
     priceEngine ! StopService
     Thread.sleep(500) // enough time to shutdown
-    probe.expectNoMsg()
+    probe.expectNoMessage()
   }
 
   it should "restart broadcasting on StartService message" in {

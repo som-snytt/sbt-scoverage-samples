@@ -1,6 +1,7 @@
 package com.sksamuel.scoverage.samples
 
 import akka.actor.{Cancellable, Actor}
+import scala.annotation.nowarn
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.language.postfixOps
@@ -14,6 +15,7 @@ class PriceEngine(generator: QuoteGenerator) extends Actor {
 
   var cancellable: Cancellable = _
 
+  @nowarn
   def receive = {
     case StartService =>
       stop()
@@ -25,7 +27,7 @@ class PriceEngine(generator: QuoteGenerator) extends Actor {
       stop()
   }
 
-  def stop() {
+  def stop(): Unit = {
     if (cancellable != null)
       cancellable.cancel()
   }

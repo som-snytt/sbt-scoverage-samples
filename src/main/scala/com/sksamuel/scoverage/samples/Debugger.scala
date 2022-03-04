@@ -2,7 +2,7 @@ package com.sksamuel.scoverage.samples
 
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox
-import macrocompat.bundle
+//import macrocompat.bundle
 
 /** @author Stephen Samuel */
 object Debugger {
@@ -10,9 +10,9 @@ object Debugger {
   def debug(params: Any*): Unit = macro DebuggerMacros.debugImpl
 }
 
-@bundle
+//@bundle
 class DebuggerMacros(val c: whitebox.Context) {
-  import c.universe._
+  //import c.universe._
   /**
    * Implementation of the debug macro
    */

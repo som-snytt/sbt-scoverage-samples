@@ -1,5 +1,6 @@
 package com.sksamuel.scoverage.samples
 
+import scala.annotation.nowarn
 import scala.concurrent.{Promise, Future, ExecutionContext}
 import scala.language.implicitConversions
 
@@ -8,7 +9,7 @@ class Futures {
 
   import EitherMappableFuture._
 
-  def insert[T](doc: T)(implicit name: String, executor: ExecutionContext): Future[Result] = {
+  def insert[T](doc: T)(implicit @nowarn name: String, executor: ExecutionContext): Future[Result] = {
     val promise = Promise[Result]()
     Future {
       Thread.sleep(300)

@@ -1,6 +1,7 @@
 package com.sksamuel.scoverage.samples
 
 import akka.actor.{ActorRef, Actor}
+import scala.annotation.nowarn
 import scala.util.Random
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -30,6 +31,7 @@ class ClientActor(priceEngine: ActorRef, orderEngine: ActorRef) extends Actor {
       println("Order was accepted :)" + a)
   }
 
+  @nowarn
   override def preStart(): Unit = {
     // ask for a quote every second for a random equity
     context.system.scheduler.schedule(100 milliseconds, 1000 milliseconds) {

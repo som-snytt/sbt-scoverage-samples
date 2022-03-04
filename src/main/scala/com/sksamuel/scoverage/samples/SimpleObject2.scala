@@ -10,7 +10,7 @@ import ExecutionContext.Implicits.global
  */
 object SimpleObject2 {
 
-  def method1(input: Int) {
+  def method1(input: Int): Unit = {
     for {
       auth <- method2(input)
     } yield
@@ -27,6 +27,7 @@ object SimpleObject2 {
         case LoginSignupResult(_, _, Some(authUser), _) =>
           println("4")
           authUser
+        case _ => ???
       }
   }
 

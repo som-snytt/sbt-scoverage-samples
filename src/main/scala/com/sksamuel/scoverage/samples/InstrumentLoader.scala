@@ -3,7 +3,7 @@ package com.sksamuel.scoverage.samples
 import scala.util.Random
 import java.util.Date
 import org.apache.commons.io.IOUtils
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 /** @author Stephen Samuel */
 object InstrumentLoader {
